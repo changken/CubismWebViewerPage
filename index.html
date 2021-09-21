@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>TypeScript HTML App</title>
+  <style>
+    html, body {
+        margin: 0;
+        overflow: hidden;
+    }
+    .reveal{
+      position: absolute !important;
+      top: 20px;
+      background: rgba(0,0,0,0.3);
+    }
+  </style>
+
+  <!--reveal.js-->
+  <link rel="stylesheet" href="vendor/dist/reset.css">
+  <link rel="stylesheet" href="vendor/dist/reveal.css">
+  <link rel="stylesheet" href="vendor/dist/theme/black.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="vendor/plugin/highlight/monokai.css">
+
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src = "./dist/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src = "./dist/bundle.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--我做兩頁-->
+      <!--一個section一頁-->
+      <!--左右切換 每頁都是cubism 人物 循環播放角色動作 不同頁面不同角色-->
+      <section>
+        <!-- <h5>ParamAngleX</h5>
+        <input type="range" id="angleX" min="-100" max="100" value="0">
+        <h5>ParamAngleY</h5>
+        <input type="range" id="angleY" min="0" max="100" value="0">
+        <h5>ParamAngleZ</h5>
+        <input type="range" id="angleZ" min="-100" max="100" value="0">
+        <h5>ParamBodyAngleX</h5>
+        <input type="range" id="bodyAngleX" min="0" max="100" value="0">
+        <h5>ParamEyeAngleX</h5>
+        <input type="range" id="eyeAngleX" min="0" max="100" value="0">
+        <h5>ParamEyeAngleY</h5>
+        <input type="range" id="eyeAngleY" min="0" max="100" value="0"> -->
+
+        <h5>mouth Form</h5>
+        <input type="range" id="mouthForm" min="-100" max="100" value="0">
+        <h5>mouth Y</h5>
+        <input type="range" id="mouthY" min="0" max="100" value="0">
+      </section>
+      <!-- <section>Slide 2</section>
+      <section>Slide 3</section>
+      <section>Slide 4</section>
+      <section>Slide 5</section>
+      <section>Slide 6</section> -->
+    </div>
+  </div>
+  <script src="vendor/dist/reveal.js"></script>
+  <script src="vendor/plugin/notes/notes.js"></script>
+  <script src="vendor/plugin/markdown/markdown.js"></script>
+  <script src="vendor/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+  </script>
+  <script>
+    document.querySelector("input[type=range]").addEventListener('change', e => {
+    runModel((view) => {
+      // mouth
+      let angleXEl = document.querySelector('#angleX');
+      let angleYEl = document.querySelector('#angleY');
+      let angleZEl = document.querySelector('#angleZ');
+      let bodyAngleXEl = document.querySelector('#bodyAngleX');
+      let eyeAngleXEl = document.querySelector('#eyeAngleX');
+      let eyeAngleYEl = document.querySelector('#eyeAngleY');
+      
+      let mouthFormEl = document.querySelector('#mouthForm');
+      let mouthYEl = document.querySelector('#mouthY');
+      
+      // let rangeValueAngleX = parseInt(angleXEl.value);
+      // let rangeValueAngleY = parseInt(angleYEl.value);
+      // let rangeValueAngleZ = parseInt(angleZEl.value);
+      // let rangeValueBodyAngleX = parseInt(bodyAngleXEl.value);
+      // let rangeValueEyeAngleX = parseInt(eyeAngleXEl.value);
+      // let rangeValueEyeAngleY = parseInt(eyeAngleYEl.value);
+
+      let rangeValueMouthForm = parseInt(mouthFormEl.value);
+      let rangeValueMouthY = parseInt(mouthYEl.value);
+
+        //先傳到lapp delegate的view的參數
+      //綁定參數
+      view.angleX = 0;
+      view.angleY = 0;
+      view.angleZ = 0;
+      view.eyeLOpen = 0;
+      view.eyeLSmile = 0;
+      view.eyeROpen = 0;
+      view.eyeRSmile = 0;
+      view.eyeBallX = 0;
+      view.eyeBallY = 0;
+      view.eyeBallForm = 0;
+      view.browLY = 0;
+      view.browRY = 0;
+      view.browLX = 0;
+      view.browRX = 0;
+      view.browLAngle = 0;
+      view.browRAngle = 0;
+      view.browLForm = 0;
+      view.browRForm = 0;
+      //mouth form
+      view.mouthForm = rangeValueMouthForm / 100;
+      //mouth openY
+      view.mouthOpenY = rangeValueMouthY / 100;
+      view.cheek = 0;
+      view.bodyAngleX = 0;
+      view.bodyAngleY = 0;
+      view.bodyAngleZ = 0;
+      view.breath = 0;
+      view.armLA = 0;
+      view.armRA = 0;
+      view.armLB = 0;
+      view.armRB = 0;
+      view.handL = 0;
+      view.handR = 0;
+      view.hairFront = 0;
+      view.hairSide = 0;
+      view.hairBack = 0;
+      view.hairFluffy = 0;
+      view.shoulderY = 0;
+      view.bustX = 0;
+      view.bustY = 0;
+      view.baseX = 0;
+      view.baseY = 0;
+    });
+  });
+  </script>
+</body>
+</html>
